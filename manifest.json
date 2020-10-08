@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Outline Extension",
+  "version": "0.1",
+  "background" : {
+    "scripts" : ["index.js"]
+  },
+  "browser_action": {
+    "default_icon": "icons/outline-180x180.png"
+  },
+  "permissions": ["activeTab"]
+}
