@@ -1,10 +1,17 @@
-(function(){
-  chrome.browserAction.onClicked.addListener(function(tab) {
-    if(!tab.url) return;
+(function () {
+  chrome.action.onClicked.addListener(function (tab) {
+    if (!tab.url) return;
 
     const outlineSite = `https://outline.com/${tab.url}`
 
     const code = `window.location.href = "${outlineSite}"`
-    chrome.tabs.executeScript(tab.id, {code: code})
-  });
+    if (chrome.scripting) {
+      chrome.scripting.executeScript(tab.id, {
+        function: () => code
+      });
+    } else {
+      chrome.tabs.executeScript(tab.id, { code: code })
+    }
+
+  })
 })()
