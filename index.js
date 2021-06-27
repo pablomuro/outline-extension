@@ -9,8 +9,10 @@
       chrome.scripting.executeScript(tab.id, {
         function: () => code
       });
-    } else {
+    } else if (chrome.tabs.executeScript) {
       chrome.tabs.executeScript(tab.id, { code: code })
+    } else {
+      chrome.tabs.update({ url: outlineSite })
     }
 
   })
